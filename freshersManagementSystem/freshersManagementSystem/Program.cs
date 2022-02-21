@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace FreshersManagementSystem
 {
     /* <summary> FreshersManagementSystem implements the application 
@@ -13,7 +12,7 @@ namespace FreshersManagementSystem
         private void ManageFreshers()
         {
             int userChoice = 0;
-            string options = "Enter your choice\n1.Create\t 2.View all trainees\t\t " +
+            string options = "Enter your choice\n1.Create trainee/trainees\t 2.View all trainees\t\t " +
                 "3.Search a particular trainee\t\t 4.Exit";
             do
             {
@@ -70,8 +69,9 @@ namespace FreshersManagementSystem
         private void CreateTrainee()
         {
             List<Trainee> trainees = GetTraineesDetails();
-            FileStream fileStream = new FileStream(@"c:\.net training\trainees.txt", FileMode.OpenOrCreate);
-            StreamWriter streamWriter = new StreamWriter(fileStream);
+
+            FileStream fileStream = new FileStream(@"c:\.net training\trainees.txt", FileMode.Append);
+            StreamWriter streamWriter = new StreamWriter(fileStream);            
 
             foreach (var trainee in trainees)
             {
@@ -88,20 +88,29 @@ namespace FreshersManagementSystem
            <returns> A list of trainees */
         private List<Trainee> GetTraineesDetails()
         {
+            int lastTraineeID = 0;
             int noOfTrainees;
             int count = 0;
             string name;
             DateOnly dateOfBirth;
             string address;
             long mobileNumber;
+            List<Trainee> trainees = new List<Trainee>();
+
+            try
+            {
+                String lastLine = File.ReadLines(@"c:\.net training\trainees.txt").Last();
+                string[] lastLineAttributes = lastLine.Split(", ");
+                lastTraineeID = Convert.ToInt32(lastLineAttributes[0]);
+            }
+            catch(Exception exception){}
 
             Console.WriteLine("Enter the number of trainees : ");
             noOfTrainees = Convert.ToInt32(Console.ReadLine());
-            List<Trainee> trainees = new List<Trainee>();
 
             do
             {
-                Console.WriteLine("\nTrainee number : " + ++count + "\nEnter trainee details + \nName : ");
+                Console.WriteLine("\nTrainee number : " + ++lastTraineeID + "\nEnter trainee details + \nName : ");
                 name = Console.ReadLine();
 
                 Console.WriteLine("Mobile Number : ");
@@ -113,8 +122,9 @@ namespace FreshersManagementSystem
                 Console.WriteLine("Address : ");
                 address = Console.ReadLine();
 
-                Trainee trainee = new Trainee(count, name, mobileNumber, dateOfBirth, address);
+                Trainee trainee = new Trainee(lastTraineeID, name, mobileNumber, dateOfBirth, address);
                 trainees.Add(trainee);
+                count++;
 
             } while (count != noOfTrainees);
 
@@ -125,7 +135,7 @@ namespace FreshersManagementSystem
            date of birth, address */
         private void ViewTrainees()
         {
-            FileStream fileStream = new FileStream("c:\\.net training\\trainees.txt", FileMode.OpenOrCreate);
+            FileStream fileStream = new FileStream("c:\\.net training\\trainees.txt", FileMode.Open);
             StreamReader streamReader = new StreamReader(fileStream);
 
             string datum = "";
@@ -184,7 +194,7 @@ namespace FreshersManagementSystem
             Console.WriteLine("Enter the Trainee ID ");
             int id = Convert.ToInt32(Console.ReadLine());
 
-            FileStream fileStream = new FileStream("c:\\.net training\\trainees.txt", FileMode.OpenOrCreate);
+            FileStream fileStream = new FileStream("c:\\.net training\\trainees.txt", FileMode.Open);
             StreamReader streamReader = new StreamReader(fileStream);
 
             string datum = "";
@@ -218,7 +228,7 @@ namespace FreshersManagementSystem
             Console.WriteLine("Enter the first letter of the name : ");
             string firstLetter = Console.ReadLine();
 
-            FileStream fileStream = new FileStream("c:\\.net training\\trainees.txt", FileMode.OpenOrCreate);
+            FileStream fileStream = new FileStream("c:\\.net training\\trainees.txt", FileMode.Open);
             StreamReader streamReader = new StreamReader(fileStream);
 
             string datum = "";
@@ -231,10 +241,11 @@ namespace FreshersManagementSystem
                     string[] traineeAttributes = trainee.Split(", ");
                     for (int index = 0; index < traineeAttributes.Length; index++)
                     {
-                        if (1 == index && traineeAttributes[index].Substring(0, 1) == firstLetter)
+                        if (1 == index && traineeAttributes[1].Substring(0, 1) == firstLetter)
                         {
-                            Console.WriteLine(traineeAttributes[index]);
+                            Console.WriteLine(traineeAttributes[1]);
                             isLetterMatches = true;
+                            break;
                         }
                     }
                 }
