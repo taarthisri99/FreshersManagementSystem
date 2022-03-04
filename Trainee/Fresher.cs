@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FreshersManagementSystem_WindowsApplication
+namespace Trainee
 {
-    public class Trainee
+    public class Fresher
     {
-        public Trainee(int id, string name, long mobileNumber, DateTime dateOfBirth
+        public Fresher(int id, string name, long mobileNumber, DateTime dateOfBirth
             , string qualification, string address)
         {
             Id = id;

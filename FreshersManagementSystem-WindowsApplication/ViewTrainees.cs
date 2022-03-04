@@ -2,26 +2,33 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Dal;
+using Trainee;
+
 namespace FreshersManagementSystem_WindowsApplication
 {
     public partial class ViewTrainees : Form
     {
         ManageFreshers manageFreshers = new ManageFreshers();
+        DatabaseAccessLayer databaseAccessLayer = new DatabaseAccessLayer();
         public ViewTrainees()
         {
             InitializeComponent();
-            displayGrid();
+            DisplayGrid();
         }
 
-        private void displayGrid()
+        private void DisplayGrid()
         {
-            dataGridView1.DataSource = manageFreshers.getTrainees();
+            var freshers = databaseAccessLayer.FetchTrainees();
+
+            dataGridView1.DataSource = freshers;
             DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn();
             deleteColumn.UseColumnTextForButtonValue = true;
             deleteColumn.Text = "Delete";
@@ -56,14 +63,13 @@ namespace FreshersManagementSystem_WindowsApplication
                     string address = dataGridView1.Rows[selectedRow].Cells[7].Value.ToString();
 
                     SaveFresher saveFresher = new SaveFresher();
-                    Trainee trainee = new Trainee(id, name, mobileNumber, dateOfBirth, qualification, address);
-                    saveFresher.ShowDataToUpdate(trainee);
-                    dataGridView1.Refresh();
+                    var fresher = new Fresher(id, name, mobileNumber, dateOfBirth, qualification, address);
+                    saveFresher.ShowDataToUpdate(fresher);
                 }
-            } 
-            catch(ArgumentOutOfRangeException argumentOutOfRangeException) 
+                dataGridView1.Refresh();
+            }
+            catch (ArgumentOutOfRangeException argumentOutOfRangeException)
             { }
-            
         }
     }
 }

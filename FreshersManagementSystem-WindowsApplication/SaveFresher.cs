@@ -9,6 +9,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Trainee;
+
 namespace FreshersManagementSystem_WindowsApplication
 {
     public partial class SaveFresher : Form
@@ -22,27 +24,28 @@ namespace FreshersManagementSystem_WindowsApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int traineeId = Convert.ToInt32(IdBox.Text);
             string name = NameBox.Text;
             long mobileNumber = Convert.ToInt64(MobileNumberBox.Text);
             DateTime dateOfBirth = DateTime.Parse(DateBox.Text);
             string qualification = QualificationBox.Text;
             string address = AddressBox.Text;
-            Trainee trainee = new Trainee(++manageFreshers.traineeId, name, mobileNumber, dateOfBirth, qualification
+            var fresher = new Fresher(traineeId, name, mobileNumber, dateOfBirth, qualification
                 , address);
 
             if (string.Equals(IdBox.Text, ""))
             {
-                manageFreshers.saveTrainees(trainee);
-                MessageBox.Show("Trainee saved successfully");
-                clearForm();
+                manageFreshers.SaveTrainees(fresher);
             }
             else
             {
-                manageFreshers.updateTrainee(trainee);
+                manageFreshers.UpdateTrainee(fresher);
             }
+            MessageBox.Show("Trainee " + traineeId + " saved successfully");
+            ClearForm();
         }
 
-        private void clearForm()
+        private void ClearForm()
         {
             NameBox.Text = string.Empty;
             MobileNumberBox.Text = null;
@@ -51,20 +54,21 @@ namespace FreshersManagementSystem_WindowsApplication
             AddressBox.Text = string.Empty;
         }
 
-        public void ShowDataToUpdate(Trainee trainee)
+        public void ShowDataToUpdate(Fresher fresher)
         {
-            IdBox.Text = trainee.Id.ToString();
-            NameBox.Text = trainee.Name;
-            MobileNumberBox.Text = trainee.MobileNumber.ToString();
-            DateBox.Text = trainee.DateOfBirth.ToString();
-            QualificationBox.Text = trainee.Qualification;
-            AddressBox.Text = trainee.Address;
+            IdBox.Text = fresher.Id.ToString();
+            NameBox.Text = fresher.Name;
+            MobileNumberBox.Text = fresher.MobileNumber.ToString();
+            DateBox.Text = fresher.DateOfBirth.ToString();
+            QualificationBox.Text = fresher.Qualification;
+            AddressBox.Text = fresher.Address;
             ShowDialog();
         }
 
         private void NameBox_Validating(object sender, CancelEventArgs e)
         {
-            if (!Regex.IsMatch(NameBox.Text, @"([a-zA-Z.]+\\s?)*"))
+            if (!(Regex.IsMatch(NameBox.Text, @"^([a-zA-Z .]*)$") 
+                && !(string.IsNullOrWhiteSpace(NameBox.Text))))
             {
                 e.Cancel = true;
                 NameBox.Focus();

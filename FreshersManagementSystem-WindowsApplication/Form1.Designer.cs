@@ -87,15 +87,16 @@
             // viewTraineesToolStripMenuItem
             // 
             this.viewTraineesToolStripMenuItem.Name = "viewTraineesToolStripMenuItem";
-            this.viewTraineesToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.viewTraineesToolStripMenuItem.Size = new System.Drawing.Size(218, 34);
             this.viewTraineesToolStripMenuItem.Text = "View Trainees";
             this.viewTraineesToolStripMenuItem.Click += new System.EventHandler(this.viewTraineesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(218, 34);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -103,6 +104,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(55, 29);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -113,8 +115,8 @@
             this.Controls.Add(this.label2);
             this.IsMdiContainer = true;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

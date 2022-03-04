@@ -22,19 +22,23 @@ namespace FreshersManagementSystem_WindowsApplication
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            manageFreshers.traineeId++;
             fresher.ShowDialog();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void viewTraineesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewTrainees viewTrainees = new ViewTrainees();
+            var viewTrainees = new ViewTrainees();
             viewTrainees.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

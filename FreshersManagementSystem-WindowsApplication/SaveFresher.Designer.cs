@@ -33,7 +33,6 @@
             this.IdBox = new System.Windows.Forms.TextBox();
             this.DateBox = new System.Windows.Forms.DateTimePicker();
             this.QualificationBox = new System.Windows.Forms.ComboBox();
-            this.AddressBox = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.MobileNumberBox = new System.Windows.Forms.TextBox();
             this.NameBox = new System.Windows.Forms.TextBox();
@@ -43,16 +42,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.AddressBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.AddressBox);
             this.groupBox1.Controls.Add(this.IdBox);
             this.groupBox1.Controls.Add(this.DateBox);
             this.groupBox1.Controls.Add(this.QualificationBox);
-            this.groupBox1.Controls.Add(this.AddressBox);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.MobileNumberBox);
             this.groupBox1.Controls.Add(this.NameBox);
@@ -98,14 +98,6 @@
             this.QualificationBox.Name = "QualificationBox";
             this.QualificationBox.Size = new System.Drawing.Size(121, 28);
             this.QualificationBox.TabIndex = 11;
-            // 
-            // AddressBox
-            // 
-            this.AddressBox.Location = new System.Drawing.Point(208, 270);
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.Size = new System.Drawing.Size(309, 84);
-            this.AddressBox.TabIndex = 10;
-            this.AddressBox.Text = "";
             // 
             // label5
             // 
@@ -183,6 +175,14 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // AddressBox
+            // 
+            this.AddressBox.Location = new System.Drawing.Point(206, 270);
+            this.AddressBox.Multiline = true;
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.Size = new System.Drawing.Size(284, 100);
+            this.AddressBox.TabIndex = 15;
+            // 
             // SaveFresher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -191,6 +191,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "SaveFresher";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Fresher";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -210,10 +211,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox QualificationBox;
-        private System.Windows.Forms.RichTextBox AddressBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker DateBox;
         private System.Windows.Forms.TextBox IdBox;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TextBox AddressBox;
     }
 }
