@@ -116,13 +116,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dal\Dal.csproj">
+    <ProjectReference Include="..\Dal\FreshersManagement.Data.csproj">
       <Project>{0536f002-f6e3-4b9b-8a64-7882fd4b8863}</Project>
-      <Name>Dal</Name>
+      <Name>FreshersManagement.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Trainee\Trainee.csproj">
+    <ProjectReference Include="..\Trainee\FresherManagement.Model.csproj">
       <Project>{e19fefab-f0e7-4264-b7a4-ac481a36aeac}</Project>
-      <Name>Trainee</Name>
+      <Name>FresherManagement.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

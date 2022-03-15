@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FreshersManagementSystem_WindowsApplication
+namespace FreshersManagementSystem.Windows
 {
     internal static class Program
     {

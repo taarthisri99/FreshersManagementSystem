@@ -41,13 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseAccessLayer.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="DataBaseManager.cs" />
+    <Compile Include="IDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Trainee\Trainee.csproj">
+    <ProjectReference Include="..\Trainee\FresherManagement.Model.csproj">
       <Project>{e19fefab-f0e7-4264-b7a4-ac481a36aeac}</Project>
-      <Name>Trainee</Name>
+      <Name>FresherManagement.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

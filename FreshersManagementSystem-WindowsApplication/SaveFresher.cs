@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Trainee;
 
-namespace FreshersManagementSystem_WindowsApplication
+namespace FreshersManagementSystem.Windows
 {
     public partial class SaveFresher : Form
     {
@@ -24,7 +18,7 @@ namespace FreshersManagementSystem_WindowsApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int traineeId = Convert.ToInt32(IdBox.Text);
+            int traineeId = 0;
             string name = NameBox.Text;
             long mobileNumber = Convert.ToInt64(MobileNumberBox.Text);
             DateTime dateOfBirth = DateTime.Parse(DateBox.Text);
@@ -35,23 +29,42 @@ namespace FreshersManagementSystem_WindowsApplication
 
             if (string.Equals(IdBox.Text, ""))
             {
-                manageFreshers.SaveTrainees(fresher);
+                if(0 == manageFreshers.SaveTrainee(fresher))
+                {
+                    MessageBox.Show("Trainee saved Failed\nHint: Mobile Number already exist");
+                    MobileNumberBox.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Trainee saved successfully");
+                    ClearForm();
+                }
             }
             else
             {
-                manageFreshers.UpdateTrainee(fresher);
+                fresher.Id = Convert.ToInt32(IdBox.Text);
+
+                if (0 == manageFreshers.SaveTrainee(fresher))
+                {
+                    MessageBox.Show("Trainee saved Failed\nHint: Mobile Number already exist");
+                    MobileNumberBox.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Trainee saved successfully");
+                    ClearForm();
+                }
             }
-            MessageBox.Show("Trainee " + traineeId + " saved successfully");
-            ClearForm();
+            
         }
 
         private void ClearForm()
         {
-            NameBox.Text = string.Empty;
-            MobileNumberBox.Text = null;
+            NameBox.Clear();
+            MobileNumberBox.Clear();
             DateBox.Text = null;
             QualificationBox.Text = string.Empty;
-            AddressBox.Text = string.Empty;
+            AddressBox.Clear();
         }
 
         public void ShowDataToUpdate(Fresher fresher)
@@ -120,3 +133,4 @@ namespace FreshersManagementSystem_WindowsApplication
         }
     }   
 }
+ 

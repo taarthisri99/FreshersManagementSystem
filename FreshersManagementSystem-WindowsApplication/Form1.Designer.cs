@@ -1,4 +1,4 @@
-﻿namespace FreshersManagementSystem_WindowsApplication
+﻿namespace FreshersManagementSystem.Windows
 {
     partial class Form1
     {

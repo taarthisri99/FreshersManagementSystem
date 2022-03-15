@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Dal;
+using FreshersManagement.Data;
 using Trainee;
 
-namespace FreshersManagementSystem_WindowsApplication
+namespace FreshersManagementSystem.Windows
 {
     public partial class ViewTrainees : Form
     {
         ManageFreshers manageFreshers = new ManageFreshers();
-        DatabaseAccessLayer databaseAccessLayer = new DatabaseAccessLayer();
+        DataAccess dataAccess = new DataAccess();
         public ViewTrainees()
         {
             InitializeComponent();
@@ -26,7 +18,7 @@ namespace FreshersManagementSystem_WindowsApplication
 
         private void DisplayGrid()
         {
-            var freshers = databaseAccessLayer.FetchTrainees();
+            var freshers = dataAccess.FetchTrainees();
 
             dataGridView1.DataSource = freshers;
             DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn();
@@ -43,8 +35,9 @@ namespace FreshersManagementSystem_WindowsApplication
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {   
-            try {
+        {
+            try
+            {
                 if (string.Equals(dataGridView1.Columns[e.ColumnIndex].Name, "Delete"))
                 {
                     int selectedRow = dataGridView1.CurrentCell.RowIndex;
@@ -62,14 +55,16 @@ namespace FreshersManagementSystem_WindowsApplication
                     string qualification = dataGridView1.Rows[selectedRow].Cells[6].Value.ToString();
                     string address = dataGridView1.Rows[selectedRow].Cells[7].Value.ToString();
 
-                    SaveFresher saveFresher = new SaveFresher();
+                    var saveFresher = new SaveFresher();
                     var fresher = new Fresher(id, name, mobileNumber, dateOfBirth, qualification, address);
                     saveFresher.ShowDataToUpdate(fresher);
                 }
-                dataGridView1.Refresh();
+                DisplayGrid();
             }
-            catch (ArgumentOutOfRangeException argumentOutOfRangeException)
+            catch (Exception exception) when (exception is FormatException ||
+                           exception is ArgumentOutOfRangeException)
             { }
+                  
         }
     }
 }

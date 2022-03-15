@@ -1,4 +1,4 @@
-﻿namespace FreshersManagementSystem_WindowsApplication
+﻿namespace FreshersManagementSystem.Windows
 {
     partial class ViewTrainees
     {
@@ -30,11 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.freshersDataSet = new FreshersManagementSystem_WindowsApplication.FreshersDataSet();
             this.traineesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.traineesTableAdapter = new FreshersManagementSystem_WindowsApplication.FreshersDataSetTableAdapters.TraineesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freshersDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.traineesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,17 +48,13 @@
             // 
             // freshersDataSet
             // 
-            this.freshersDataSet.DataSetName = "FreshersDataSet";
-            this.freshersDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // traineesBindingSource
             // 
             this.traineesBindingSource.DataMember = "Trainees";
-            this.traineesBindingSource.DataSource = this.freshersDataSet;
             // 
             // traineesTableAdapter
             // 
-            this.traineesTableAdapter.ClearBeforeFill = true;
             // 
             // ViewTrainees
             // 
@@ -73,7 +66,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ViewTrainees";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.freshersDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.traineesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -82,8 +74,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private FreshersDataSet freshersDataSet;
         private System.Windows.Forms.BindingSource traineesBindingSource;
-        private FreshersDataSetTableAdapters.TraineesTableAdapter traineesTableAdapter;
     }
 }

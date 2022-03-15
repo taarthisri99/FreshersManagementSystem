@@ -1,4 +1,4 @@
-﻿namespace FreshersManagementSystem_WindowsApplication
+﻿namespace FreshersManagementSystem.Windows
 {
     partial class SaveFresher
     {
@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.AddressBox = new System.Windows.Forms.TextBox();
             this.IdBox = new System.Windows.Forms.TextBox();
             this.DateBox = new System.Windows.Forms.DateTimePicker();
             this.QualificationBox = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.AddressBox = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +66,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Details";
+            // 
+            // AddressBox
+            // 
+            this.AddressBox.Location = new System.Drawing.Point(206, 270);
+            this.AddressBox.Multiline = true;
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.Size = new System.Drawing.Size(284, 100);
+            this.AddressBox.TabIndex = 15;
             // 
             // IdBox
             // 
@@ -175,14 +183,6 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // AddressBox
-            // 
-            this.AddressBox.Location = new System.Drawing.Point(206, 270);
-            this.AddressBox.Multiline = true;
-            this.AddressBox.Name = "AddressBox";
-            this.AddressBox.Size = new System.Drawing.Size(284, 100);
-            this.AddressBox.TabIndex = 15;
-            // 
             // SaveFresher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -192,7 +192,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "SaveFresher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New Fresher";
+            this.Text = "Save Fresher";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
