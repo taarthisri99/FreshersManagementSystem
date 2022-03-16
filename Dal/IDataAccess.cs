@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Data;
 using Trainee;
 
 namespace FreshersManagement.Data
@@ -7,7 +7,7 @@ namespace FreshersManagement.Data
     internal interface IDataAccess
     {
         int SaveTrainee(Fresher fresher);
-        List<Fresher> FetchTrainees();
+        DataTable FetchTrainees();
         void DeleteTrainee(int id);
     }
 }

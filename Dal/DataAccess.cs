@@ -38,28 +38,43 @@ namespace FreshersManagement.Data
 
             return numberOfRowsAffected;
         }
-        public List<Fresher> FetchTrainees()
+        public DataTable FetchTrainees()
         {
             SqlConnection sqlConnection = databaseManager.GetConnection();
-            SqlCommand sqlCommand = databaseManager.GetCommand("spSelectTrainees", sqlConnection);
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            var freshers = new List<Fresher>();
+            //    SqlCommand sqlCommand = databaseManager.GetCommand("spSelectTrainees", sqlConnection);
+            //    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            //    var freshers = new List<Fresher>();
 
-            while (sqlDataReader.Read())
+            //    while (sqlDataReader.Read())
+            //    {
+            //        var fresher = new Fresher(Convert.ToInt32(sqlDataReader["Id"])
+            //            , Convert.ToString(sqlDataReader["Name"])
+            //            , Convert.ToInt64(sqlDataReader["MobileNumber"])
+            //            , Convert.ToDateTime(sqlDataReader["DateOfBirth"])
+            //            , Convert.ToString(sqlDataReader["Qualification"])
+            //            , Convert.ToString(sqlDataReader["Address"]));
+            //        freshers.Add(fresher);
+            //    }
+
+            //    return freshers;
+            DataTable dataTable = new DataTable();
+            string commandText = "spSelectTrainees";
+            try
             {
-                var fresher = new Fresher(Convert.ToInt32(sqlDataReader["Id"])
-                    , Convert.ToString(sqlDataReader["Name"])
-                    , Convert.ToInt64(sqlDataReader["MobileNumber"])
-                    , Convert.ToDateTime(sqlDataReader["DateOfBirth"])
-                    , Convert.ToString(sqlDataReader["Qualification"])
-                    , Convert.ToString(sqlDataReader["Address"]));
-                freshers.Add(fresher);
+                sqlConnection = databaseManager.GetConnection();
+                var sqlDataAdapter = new SqlDataAdapter(commandText, sqlConnection);
+                sqlDataAdapter.Fill(dataTable);
             }
+            catch
+            {
 
-            return freshers;
-        }
+            }
+            return dataTable;
+}
 
-        public void DeleteTrainee(int id)
+
+
+public void DeleteTrainee(int id)
         {
             SqlConnection sqlConnection = null;
 

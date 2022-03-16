@@ -18,9 +18,7 @@ namespace FreshersManagementSystem.Windows
 
         private void DisplayGrid()
         {
-            var freshers = dataAccess.FetchTrainees();
-
-            dataGridView1.DataSource = freshers;
+            dataGridView1.DataSource = dataAccess.FetchTrainees();
             DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn();
             deleteColumn.UseColumnTextForButtonValue = true;
             deleteColumn.Text = "Delete";
