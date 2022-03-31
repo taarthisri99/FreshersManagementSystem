@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="main-heading align-center"> <i class="fa fa-graduation-cap"></i> Freshers Management System </div>
+    <div class="options-align-center">
+        @Html.ActionLink("1. Trainee", "ShowFreshers", null, new { @class = "options-link"})<br>
+        @Html.ActionLink("2. Mentor", "", null, new { @class = "options-link" })<br>
+        @Html.ActionLink("3. Admin", "", null, new { @class = "options-link" })
+    </div>
+</body>
+</html>

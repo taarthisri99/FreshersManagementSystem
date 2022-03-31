@@ -7,3 +7,14 @@ Properties
 .vs
 .csproj
 .sln
+packages
+.js
+.map
+Trainee/Content/
+DataAccess/Scripts/
+Trainee/Scripts/
+DataAccess/Content/
+FreshersManagementSystem.MVC/Content
+FreshersManagementSystem.MVC/Scripts
+FreshersManagement.Service/Content
+FreshersManagement.Service/Scripts

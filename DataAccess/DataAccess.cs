@@ -38,51 +38,56 @@ namespace FreshersManagement.Data
 
             return numberOfRowsAffected;
         }
-        public DataTable FetchTrainees()
+
+        public IEnumerable<Fresher> FetchTrainees()
         {
             SqlConnection sqlConnection = databaseManager.GetConnection();
-            //    SqlCommand sqlCommand = databaseManager.GetCommand("spSelectTrainees", sqlConnection);
-            //    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-            //    var freshers = new List<Fresher>();
+            SqlCommand sqlCommand = databaseManager.GetCommand("spSelectTrainees", sqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            var freshers = new List<Fresher>();
 
-            //    while (sqlDataReader.Read())
-            //    {
-            //        var fresher = new Fresher(Convert.ToInt32(sqlDataReader["Id"])
-            //            , Convert.ToString(sqlDataReader["Name"])
-            //            , Convert.ToInt64(sqlDataReader["MobileNumber"])
-            //            , Convert.ToDateTime(sqlDataReader["DateOfBirth"])
-            //            , Convert.ToString(sqlDataReader["Qualification"])
-            //            , Convert.ToString(sqlDataReader["Address"]));
-            //        freshers.Add(fresher);
-            //    }
-
-            //    return freshers;
-            DataTable dataTable = new DataTable();
-            string commandText = "spSelectTrainees";
-            try
+            while (sqlDataReader.Read())
             {
-                sqlConnection = databaseManager.GetConnection();
-                var sqlDataAdapter = new SqlDataAdapter(commandText, sqlConnection);
-                sqlDataAdapter.Fill(dataTable);
+                var fresher = new Fresher(Convert.ToInt32(sqlDataReader["Id"])
+                    , Convert.ToString(sqlDataReader["Name"])
+                    , Convert.ToInt64(sqlDataReader["MobileNumber"])
+                    , Convert.ToDateTime(sqlDataReader["DateOfBirth"])
+                    , Convert.ToString(sqlDataReader["Qualification"])
+                    , Convert.ToString(sqlDataReader["Address"]));
+                freshers.Add(fresher);
             }
-            catch
-            {
 
+            return freshers;
+        }
+
+        public Fresher FetchTrainee(int id)
+        {
+            SqlConnection sqlConnection = databaseManager.GetConnection();
+            SqlCommand sqlCommand = databaseManager.GetCommand($"spSelectTrainee {id}", sqlConnection);
+            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            var fresher = new Fresher();
+            while (sqlDataReader.Read()) { 
+
+                fresher = new Fresher(Convert.ToInt32(sqlDataReader["Id"])
+                    , Convert.ToString(sqlDataReader["Name"])
+                    , Convert.ToInt64(sqlDataReader["MobileNumber"])
+                    , Convert.ToDateTime(sqlDataReader["DateOfBirth"])
+                    , Convert.ToString(sqlDataReader["Qualification"])
+                    , Convert.ToString(sqlDataReader["Address"]));
             }
-            return dataTable;
-}
+            return fresher;
+        }
 
-
-
-public void DeleteTrainee(int id)
+        public int DeleteTrainee(int id)
         {
             SqlConnection sqlConnection = null;
+            int numberOfRowsAffected = 0;
 
             try
             {
                 sqlConnection = databaseManager.GetConnection();
                 SqlCommand sqlCommand = databaseManager.GetCommand($"spDeleteTrainee {id}", sqlConnection);
-                sqlCommand.ExecuteNonQuery();
+                numberOfRowsAffected = sqlCommand.ExecuteNonQuery();
             }
             catch (Exception exception)
             {
@@ -91,6 +96,8 @@ public void DeleteTrainee(int id)
             {
                 sqlConnection.Close();
             }
+
+            return numberOfRowsAffected;
         }
     }
 }
