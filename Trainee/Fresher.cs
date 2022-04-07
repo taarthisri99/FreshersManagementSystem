@@ -19,12 +19,11 @@ namespace Trainee
         public int Id { get; set; }
 
         [Required(ErrorMessage = "*Name is required")]
-        [Display(Name = "Name")] 
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "*Mobile number is required")]
         [Display(Name = "Mobile Number")]
-        [Phone]
         public long MobileNumber { get; set; }
 
         [Required(ErrorMessage = "*Date of birth is required")]

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using FreshersManagement.Service;
 using Trainee;
@@ -19,8 +18,10 @@ namespace FreshersManagementSystem.MVC.Areas.Trainee.Controllers
         [HttpPost]
         public ActionResult Create(Fresher fresher)
         {
-            service.SaveTrainee(fresher);
-
+            if (ModelState.IsValid)
+            {
+                service.SaveTrainee(fresher);
+            }
             return RedirectToAction("ShowFreshers");
         }
 
@@ -36,9 +37,15 @@ namespace FreshersManagementSystem.MVC.Areas.Trainee.Controllers
         }
 
         [HttpPost]
-        public JsonResult UpdateTrainee(Fresher fresher)
+        public JsonResult UpdateTrainee([Bind] Fresher fresher)
         {
-            return Json(service.UpdateTrainee(fresher), JsonRequestBehavior.AllowGet);
+            int affectedRows = 0;
+
+            if (ModelState.IsValid)
+            {
+                affectedRows = service.UpdateTrainee(fresher);
+            }
+                return Json(affectedRows, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
